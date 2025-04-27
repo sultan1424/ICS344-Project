@@ -85,7 +85,6 @@ Start Metasploit to prepare for the exploitation phase.
 sudo msfconsole
 ```
 
-<img src="task1.1_screenshots/metasploit.png" width="500"/>
 
 ---
 
@@ -101,6 +100,7 @@ set PASSWORD vagrant
 set STOP_ON_SUCCESS true
 run
 ```
+<img src="task1.1_screenshots/metasploit.png" width="500"/>
 
 ---
 
