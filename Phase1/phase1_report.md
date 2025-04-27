@@ -164,3 +164,15 @@ def ssh_connect(ip, port, user, passwd):
 if __name__ == "__main__":
     ssh_connect(target_ip, port, username, password)
 ```
+
+### 3. Running the Script
+Executed the exploit:
+
+
+
+
+```bash
+python3 ssh_exploit.py
+```
+4. Verifying Access
+Output confirmed successful login as vagrant and execution of commands on the victim machine.
