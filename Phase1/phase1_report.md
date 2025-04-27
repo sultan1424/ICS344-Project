@@ -1,3 +1,40 @@
+# ICS344 Project – Phase 1 Report
+
+**Title:** SSH Service Exploitation on Metasploitable3  
+**Student:** Sultan Alatawi  
+**Date:** April 27, 2025
+
+---
+
+## Objective
+The goal of Phase 1 is to exploit a vulnerable SSH service running on a Metasploitable3 virtual machine (victim) using a Kali Linux machine (attacker).  
+This phase demonstrates successful brute-force attacks using Hydra, manual exploitation via Metasploit Framework, and automation through a custom Python script (Proof of Concept).
+
+---
+
+## Environment Setup
+- **Attacker Machine:** Kali Linux  
+  - IP Address: `192.168.8.164/24`
+- **Victim Machine:** Metasploitable3 Ubuntu 14.04  
+  - IP Address: `192.168.8.165/24`
+- **Network Setup:** Both machines are configured on the same private subnet (`192.168.8.x`) to allow direct communication.
+
+Both VMs were connected through a host-only/private network ensuring no external internet access during testing.
+
+---
+
+## Task 1.1: Manual Exploitation Using Metasploit
+
+### Step-by-Step Actions
+
+### 1. Network Connectivity Test
+
+Verified communication between attacker and victim:
+
+```bash
+ping 192.168.8.165
+
+
 ## 2. Scanning the Victim with Nmap
 
 Discovered open ports and running services:
