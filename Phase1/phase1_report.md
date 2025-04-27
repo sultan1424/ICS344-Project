@@ -174,5 +174,5 @@ Executed the exploit:
 ```bash
 python3 ssh_exploit.py
 ```
-4. Verifying Access
+### 4. Verifying Access
 Output confirmed successful login as vagrant and execution of commands on the victim machine.
