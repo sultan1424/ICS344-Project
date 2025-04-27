@@ -33,9 +33,9 @@ Verified communication between attacker and victim:
 
 ```bash
 ping 192.168.8.165
+```
 
-
-## 2. Scanning the Victim with Nmap
+### 2. Scanning the Victim with Nmap
 
 Discovered open ports and running services:
 
