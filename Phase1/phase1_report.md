@@ -52,7 +52,28 @@ Attempt to discover valid SSH login credentials using a wordlist.
 hydra -l vagrant -P /usr/share/wordlists/rockyou.txt ssh://192.168.8.165
 ```
 
-<img src="task1.1_screenshots/hydra.png" width="500"/>
+## Note: Hydra Brute-Force Optimization
+
+Initially, running Hydra with the full `rockyou.txt` wordlist took a very long time because of the massive number of password combinations.
+
+To optimize the process, I manually created a smaller password file (`myfile.txt`) containing only a few likely guesses.
+
+Example contents:
+
+```text
+vagrant
+admin
+password123
+toor
+root
+```
+This allowed reducing the attack time significantly.
+I then re-ran Hydra using the custom small list:
+
+```bash
+hydra -l vagrant -P smalllist.txt ssh://192.168.8.165
+```
+<img src="task1.1_screenshots/hydra.png" width="500"/> 
 
 ---
 
