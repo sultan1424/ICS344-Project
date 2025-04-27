@@ -144,7 +144,7 @@ pip3 install paramiko
 
 Create a Python script to automate SSH login and command execution.
 
-<img src="task1.1_screenshots/startfile.png" width="500"/>
+<img src="task1.2_screenshots/startfile.png" width="500"/>
 
 ```python
 import paramiko
