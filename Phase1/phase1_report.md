@@ -15,6 +15,8 @@ This phase demonstrates successful brute-force attacks using Hydra, manual explo
 ## Environment Setup
 - **Attacker Machine:** Kali Linux  
   - IP Address: `192.168.8.164/24`
+  - ![Attacker IP](Phase1/task1.1_screenshots/AttackerIP.png)
+
 - **Victim Machine:** Metasploitable3 Ubuntu 14.04  
   - IP Address: `192.168.8.165/24`
 - **Network Setup:** Both machines are configured on the same private subnet (`192.168.8.x`) to allow direct communication.
