@@ -34,27 +34,28 @@ This dual approach ensured that even if a connection reached the server, it woul
 ### 3.1 Harden SSH Configuration
 
 - Edited the SSH server configuration file `/etc/ssh/sshd_config`.
-<img src="Screenshots/harden.png" width="500"/>
+
 - Applied the following settings:
 
   ```bash
   PermitRootLogin no
   PasswordAuthentication no
   ```
-
+<img src="Screenshots/harden.png" width="500"/>
 - Restarted the SSH service to apply changes:
 
   ```bash
   sudo service ssh restart
   ```
 
-📸 **Insert screenshot here:** *(Editing sshd_config file and restarting SSH service)*
+<img src="Screenshots/restart.png" width="500"/>
 
 ---
 
 ### 3.2 Configure UFW Firewall
 
 - Installed UFW.
+<img src="Screenshots/installUFW.png" width="500"/>
 - Allowed only the Kali attacker's IP to access SSH:
 
   ```bash
