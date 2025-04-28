@@ -83,10 +83,10 @@ This dual approach ensured that even if a connection reached the server, it woul
   ```bash
   ssh vagrant@192.168.8.165
   ```
-
+<img src="Screenshots/sshafter.png" width="500"/>
 - Result: **Permission denied (publickey)** error, confirming password login is disabled.
 
-<img src="Screenshots/sshafter.png" width="500"/>
+
 
 ---
 
@@ -97,10 +97,10 @@ This dual approach ensured that even if a connection reached the server, it woul
   ```bash
   hydra -l vagrant -P smalllist.txt ssh://192.168.8.165
   ```
-
+<img src="Screenshots/hydraAfter.png" width="500"/>
 - Result: Attack failed because password authentication was not available.
 
-<img src="Screenshots/hydraAfter.png" width="500"/>
+
 
 
 ---
