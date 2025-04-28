@@ -23,4 +23,3 @@ Each phase includes detailed steps, screenshots, and documentation for better cl
 - [Hydra Password Cracker](https://github.com/vanhauser-thc/thc-hydra)
 - [Splunk SIEM Platform](https://www.splunk.com/)
 - [UFW (Uncomplicated Firewall) Documentation](https://help.ubuntu.com/community/UFW)
-- 
