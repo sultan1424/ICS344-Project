@@ -102,11 +102,8 @@ python3 -m http.server 8000
 
 Access from Mac:
 
-Open the browser and navigate to:
+- Open the browser and navigate to: http://<Kali_IP>:8000/
 
-'''bash
-http://<Kali_IP>:8000/
-'''
 
 - Then click and download auth.log.
 - Screenshot: Accessing auth.log from browser
