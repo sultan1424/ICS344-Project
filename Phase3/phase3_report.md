@@ -61,7 +61,7 @@ This dual approach ensured that even if a connection reached the server, it woul
   ```bash
   sudo ufw allow from 192.168.8.166 to any port 22 proto tcp
   ```
-
+<img src="Screenshots/UFWallow.png" width="500"/>
 - Denied all other incoming traffic:
 
   ```bash
@@ -70,9 +70,7 @@ This dual approach ensured that even if a connection reached the server, it woul
   sudo ufw status
   ```
 
-📸 **Insert screenshot here:** *(Firewall rule allowing Kali IP)*
-
-📸 **Insert screenshot here:** *(Firewall status showing active rules)*
+<img src="Screenshots/denained.png" width="500"/>
 
 ---
 
@@ -88,7 +86,7 @@ This dual approach ensured that even if a connection reached the server, it woul
 
 - Result: **Permission denied (publickey)** error, confirming password login is disabled.
 
-📸 **Insert screenshot here:** *(Permission denied (publickey) message)*
+<img src="Screenshots/sshafter.png" width="500"/>
 
 ---
 
@@ -102,7 +100,8 @@ This dual approach ensured that even if a connection reached the server, it woul
 
 - Result: Attack failed because password authentication was not available.
 
-📸 **Insert screenshot here:** *(Hydra error or failure message)*
+<img src="Screenshots/hydraAfter.png" width="500"/>
+
 
 ---
 
