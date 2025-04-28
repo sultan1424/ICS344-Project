@@ -72,7 +72,22 @@ scp vagrant@192.168.8.165:/home/vagrant/auth.log .
 <img src="Screenshots/copyFileinAuth.png" alt="Copying auth.log to Attacker" width="500"/>
 
 ---
-**4. Transfer auth.log from Attacker (Kali) to SIEM Host (Mac):**
+
+**4. Verifying Splunk TCP Input:**
+Before transferring the full log file, we validated that Splunk was ready to receive logs using a test logger message.
+
+On the victim machine (Metasploitable3), we sent a message to the Splunk host using:
+
+'''bash
+logger -n 192.168.8.120 -P 9997 "Test message from victim to Splunk"
+'''
+- Screenshot: Sending test logger message from victim
+<img src="Screenshots/Logger.png" alt="Copying auth.log to Attacker" width="500"/>
+
+This ensured that the TCP input at port 9997 was active and functioning correctly.
+
+---
+**5. Transfer auth.log from Attacker (Kali) to SIEM Host (Mac):**
 
 To make the auth.log file available on the MacBook (SIEM Host), a simple HTTP server was started on Kali, and the file was downloaded via the browser:
 
