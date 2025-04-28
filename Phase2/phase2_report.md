@@ -165,17 +165,19 @@ sshd "Accepted password"
 
 Used the **Patterns** tab to identify repetitive authentication patterns.
 
-<img src="screenshots/patterns_analysis.png" alt="Authentication Patterns" width="500"/>
+<img src="Screenshots/pattern.png" alt="Authentication Patterns" width="500"/>
 
 ---
 
-### 4. Filter by Failed and Accepted Password Attempts
-
+### 4. Identifying SSH Brute-Force Failures by Attacker IP
+This query extracts IP addresses from failed SSH login attempts and counts them to find the most aggressive attackers.
 ```bash
-index=* sshd "Failed password" OR "Accepted password"
+sshd "failed password"
+| rex "Failed password for .* from (?<attacker_ip>\d+\.\d+\.\d+\.\d+)"
+| stats count by attacker_ip
 ```
 
-<img src="screenshots/failed_and_accepted_password.png" alt="Filter Failed and Accepted Passwords" width="500"/>
+<img src="Screenshots/fillter3.png" alt="Filter Failed and Accepted Passwords" width="500"/>
 
 ---
 
