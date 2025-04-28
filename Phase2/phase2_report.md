@@ -82,7 +82,7 @@ python3 -m http.server 8000
 ''' 
 
 - Screenshot: Hosting auth.log file on HTTP server
-- 
+<img src="Screenshots/sendAuthtoMac.png" alt="Copying auth.log to Attacker" width="500"/>
 
 
 Access from Mac:
@@ -95,6 +95,8 @@ http://<Kali_IP>:8000/
 
 - Then click and download auth.log.
 - Screenshot: Accessing auth.log from browser
+
+<img src="Screenshots/downloadFile.png" alt="Copying auth.log to Attacker" width="500"/>  
 
 
 
