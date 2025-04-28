@@ -72,6 +72,42 @@ scp vagrant@192.168.8.165:/home/vagrant/auth.log .
 <img src="Screenshots/copyFileinAuth.png" alt="Copying auth.log to Attacker" width="500"/>
 
 ---
+**4. Transfer auth.log from Attacker (Kali) to SIEM Host (Mac):**
+
+To make the auth.log file available on the MacBook (SIEM Host), a simple HTTP server was started on Kali, and the file was downloaded via the browser:
+
+'''bash
+cd ~/Desktop/project
+python3 -m http.server 8000
+''' 
+
+- Screenshot: Hosting auth.log file on HTTP server
+- 
+
+
+Access from Mac:
+
+Open the browser and navigate to:
+
+'''bash
+http://<Kali_IP>:8000/
+'''
+
+- Then click and download auth.log.
+- Screenshot: Accessing auth.log from browser
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Step 5: Uploading Logs to Splunk
 
