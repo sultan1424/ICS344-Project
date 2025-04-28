@@ -21,6 +21,10 @@ To secure the SSH service, we applied two layers of defense:
   - Allowed SSH access only from the Kali Linux attacker's IP (`192.168.8.166`)
   - Blocked all other incoming connections by default (`ufw default deny incoming`)
 
+- **Important Note:**
+  - SSH access was restricted to the Kali attacker's IP (192.168.8.166) temporarily to allow controlled testing and validation of the defense mechanisms.
+  - In a real-world scenario, after successful testing, SSH access would be further restricted to trusted administrative IPs or fully disabled if unnecessary.
+
 This dual approach ensured that even if a connection reached the server, it would still be blocked unless it used proper authentication mechanisms.
 
 ---
