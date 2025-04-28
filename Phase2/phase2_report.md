@@ -11,16 +11,18 @@ The primary objective was to monitor attacker behavior and recognize cyberattack
 
 ## 2. Environment Overview
 
-| Machine | Role | Purpose |
-|:--------|:-----|:--------|
-| Kali Linux (VMware) | Attacker | Launched brute-force and scripted SSH attacks |
-| Metasploitable3 (UTM) | Victim | Hosted vulnerable SSH service |
-| MacBook Pro (Host) | SIEM Server | Hosted Splunk Enterprise for log monitoring |
+| Machine | Role | Purpose | IP |
+|:--------|:-----|:--------|:--------|
+| Kali Linux (VMware) | Attacker | Launched brute-force and scripted SSH attacks | 192.168.8.166 |
+| Metasploitable3 (UTM) | Victim | Hosted vulnerable SSH service | 192.168.8.165 |
+| MacBook Pro (Host) | SIEM Server | Hosted Splunk Enterprise for log monitoring | 192.168.8.120 |
 
 - **Splunk Version:** 9.4.1
 - **Networking Mode:** Bridged Adapter (direct IP access between VMs)
 
-**📸 Screenshot:** Insert screenshot showing the environment setup and IPs
+**📸 Screenshot:** Successful ping from Host (Mac) to Victim Machine (Metasploitable3) — proving direct network communication.
+
+
 
 ---
 
