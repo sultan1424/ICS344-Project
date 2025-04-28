@@ -139,7 +139,7 @@ This dual approach ensured that even if a connection reached the server, it woul
 - Screenshot of failed Hydra brute-force attack
 <img src="Screenshots/hydraAfter.png" width="500"/>
 - Screenshot of UFW firewall rules
-
+<img src="Screenshots/status.png" width="500"/>
 ---
 
 ## 6. Conclusion
