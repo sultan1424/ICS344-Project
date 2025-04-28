@@ -143,7 +143,7 @@ Access from Mac:
 search: sshd
 ```
 
-<img src="screenshots/sshd_basic_search.png" alt="SSHD Event Search" width="500"/>
+<img src="Screenshots/splunkSSH.png" alt="SSHD Event Search" width="500"/>
 
 ---
 
