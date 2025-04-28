@@ -21,8 +21,9 @@ The goal was to monitor and detect cyberattack patterns between an attacker (Kal
 
 - **Splunk Version:** 9.4.1
 - **Network Mode:** Bridge Network (for direct IP connectivity)
-**📸 Screenshot:** Successful ping from Host (Mac) to Victim Machine (Metasploitable3) — proving direct network communication.
-
+- **📸 Screenshot:** Successful ping from Host (Mac) to Victim Machine (Metasploitable3) — proving direct network communication.
+  
+<img src="Screenshots/PingfromMac.png"  width="500"/>
 ---
 
 ## Step 2: Splunk Installation
