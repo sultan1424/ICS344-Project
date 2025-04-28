@@ -131,7 +131,7 @@ Access from Mac:
 - Uploaded the `auth.log` file manually to Splunk through the Web GUI:
   - Settings → Add Data → Files & Directories → Upload.
 
-<img src="screenshots/upload_auth_log.png" alt="Upload Log File to Splunk" width="500"/>
+<img src="Screenshots/addData.png" alt="Upload Log File to Splunk" width="500"/>
 
 ---
 
@@ -149,7 +149,7 @@ search: sshd
 
 ### 2. Identify Brute-Force Success Moments
 
-<img src="screenshots/accepted_password_search.png" alt="Successful SSH login visualized" width="500"/>
+<img src="Screenshots/splunkSSH.png" alt="Successful SSH login visualized" width="500"/>
 
 ---
 
