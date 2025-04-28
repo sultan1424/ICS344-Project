@@ -34,7 +34,7 @@ This dual approach ensured that even if a connection reached the server, it woul
 ### 3.1 Harden SSH Configuration
 
 - Edited the SSH server configuration file `/etc/ssh/sshd_config`.
-  <img src="Screenshots/harden.png" width="500"/>
+<img src="Screenshots/harden.png" width="500"/>
 - Applied the following settings:
 
   ```bash
