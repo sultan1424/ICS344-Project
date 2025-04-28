@@ -149,6 +149,14 @@ search: sshd
 
 ### 2. Identify Brute-Force Success Moments
 
+
+After analyzing the uploaded SSH logs in Splunk, we searched specifically for successful brute-force attempts where the password was accepted.
+
+```bash
+sshd "Accepted password"
+```
+
+
 <img src="Screenshots/splunkSSH.png" alt="Successful SSH login visualized" width="500"/>
 
 ---
