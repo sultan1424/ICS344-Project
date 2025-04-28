@@ -106,18 +106,30 @@ This dual approach ensured that even if a connection reached the server, it woul
 
 ## 5. Before and After Comparison
 
-We summarize the security posture before and after applying the defensive mechanisms:
+### 5.1 Before Defense
 
-| Aspect | Before Defense | After Defense |
-|:---|:---|:---|
-| SSH Access | Open to any IP | Restricted to 192.168.8.166 (Kali only) |
-| Authentication | Password login allowed | Password login disabled |
-| Firewall Protection | No firewall rules | UFW rules applied |
-| Attack Success | Successful brute-force attack | All login attempts fail |
-| Risk Level | High (vulnerable) | Very Low (hardened) |
+- SSH Access: Open to any IP
+- Authentication: Password login allowed
+- Firewall Protection: No firewall rules applied
+- Attack Success: Successful brute-force attacks
 
-📸 **Note:**  
-*Screenshots demonstrating the successful and failed attack attempts are provided in Section 4: Testing and Validation.*
+📸 **Insert here:**
+- Screenshot of successful Hydra brute-force attack
+- Screenshot of successful SSH login
+
+---
+
+### 5.2 After Defense
+
+- SSH Access: Restricted to 192.168.8.166 (Kali only)
+- Authentication: Password login disabled
+- Firewall Protection: UFW firewall enabled
+- Attack Success: All brute-force and login attempts fail
+
+📸 **Insert here:**
+- Screenshot of SSH "Permission denied (publickey)" error
+- Screenshot of failed Hydra brute-force attack
+- Screenshot of UFW firewall rules
 
 ---
 
