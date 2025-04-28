@@ -78,9 +78,11 @@ Before transferring the full log file, we validated that Splunk was ready to rec
 
 On the victim machine (Metasploitable3), we sent a message to the Splunk host using:
 
-'''bash
+
+```bash
 logger -n 192.168.8.120 -P 9997 "Test message from victim to Splunk"
-'''
+```
+
 - Screenshot: Sending test logger message from victim
 <img src="Screenshots/Logger.png" alt="Copying auth.log to Attacker" width="500"/>
 
@@ -91,10 +93,11 @@ This ensured that the TCP input at port 9997 was active and functioning correctl
 
 To make the auth.log file available on the MacBook (SIEM Host), a simple HTTP server was started on Kali, and the file was downloaded via the browser:
 
-'''bash
+
+```bash
 cd ~/Desktop/project
 python3 -m http.server 8000
-'''
+```
 
 - Screenshot: Hosting auth.log file on HTTP server
 <img src="Screenshots/sendAuthtoMac.png" alt="Copying auth.log to Attacker" width="500"/>
