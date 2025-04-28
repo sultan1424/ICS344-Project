@@ -157,7 +157,7 @@ sshd "Accepted password"
 ```
 
 
-<img src="Screenshots/splunkSSH.png" alt="Successful SSH login visualized" width="500"/>
+<img src="Screenshots/fillter5.png"  width="500"/>
 
 ---
 
