@@ -195,12 +195,18 @@ sshd "Failed password" OR "Accepted password"
 <img src="Screenshots/fillter2.png" alt="Statistics by Attacker IP" width="500"/>
 
 ---
+### 6.SSH Logins Over Time by Host 
+Shows SSH-related activities over time per host to spot periods of high attack activity.
 
-## Step 7: Comparison between Victim and Attacker Logs
+```bash
+ sshd
+| timechart count by host
+```
 
-- Victim machine provided rich authentication logs including successful and failed SSH login attempts.
-- The analysis identified brute-force behavior clearly through SSH log patterns.
-- Only one attacking IP was detected — confirming single-source brute-force attempt from the attacker's Kali machine.
+
+
+<img src="Screenshots/fillter4.png" alt="Statistics by Attacker IP" width="500"/>
+
 
 ---
 
