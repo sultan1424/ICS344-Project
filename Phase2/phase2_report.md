@@ -50,7 +50,7 @@ The goal was to monitor and detect cyberattack patterns between an attacker (Kal
 ssh vagrant@192.168.8.165
 ```
 
-<img src="screenshots/ssh_login.png" alt="SSH Login to Victim" width="500"/>
+<img src="Screenshots/ssh.png" alt="SSH Login to Victim" width="500"/>
 
 ---
 
