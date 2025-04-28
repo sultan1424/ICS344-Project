@@ -53,7 +53,7 @@ This dual approach ensured that even if a connection reached the server, it woul
 
 ### 3.2 Configure UFW Firewall
 
-- Installed UFW (already installed).
+- Installed UFW.
 - Allowed only the Kali attacker's IP to access SSH:
 
   ```bash
@@ -75,8 +75,6 @@ This dual approach ensured that even if a connection reached the server, it woul
 ---
 
 ## 4. Testing and Validation
-
-After applying the defense mechanisms, we reran the attack scenarios:
 
 ### 4.1 SSH Login Attempt
 
@@ -108,6 +106,8 @@ After applying the defense mechanisms, we reran the attack scenarios:
 
 ## 5. Before and After Comparison
 
+We summarize the security posture before and after applying the defensive mechanisms:
+
 | Aspect | Before Defense | After Defense |
 |:---|:---|:---|
 | SSH Access | Open to any IP | Restricted to 192.168.8.166 (Kali only) |
@@ -116,9 +116,8 @@ After applying the defense mechanisms, we reran the attack scenarios:
 | Attack Success | Successful brute-force attack | All login attempts fail |
 | Risk Level | High (vulnerable) | Very Low (hardened) |
 
-📸 **Insert screenshots from Phase 1 showing successful brute-force attack (Before Defense).**
-
-📸 **Insert screenshots from Phase 3 showing failed login attempts (After Defense).**
+📸 **Note:**  
+*Screenshots demonstrating the successful and failed attack attempts are provided in Section 4: Testing and Validation.*
 
 ---
 
