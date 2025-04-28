@@ -94,7 +94,7 @@ To make the auth.log file available on the MacBook (SIEM Host), a simple HTTP se
 '''bash
 cd ~/Desktop/project
 python3 -m http.server 8000
-''' 
+'''
 
 - Screenshot: Hosting auth.log file on HTTP server
 <img src="Screenshots/sendAuthtoMac.png" alt="Copying auth.log to Attacker" width="500"/>
@@ -102,7 +102,7 @@ python3 -m http.server 8000
 
 Access from Mac:
 
-- Open the browser and navigate to: http://<Kali_IP>:8000/
+- Open the browser and navigate to: http://192.168.8.166:8000/
 
 
 - Then click and download auth.log.
