@@ -177,7 +177,7 @@ sshd "failed password"
 | stats count by attacker_ip
 ```
 
-<img src="Screenshots/fillter3.png" alt="Filter Failed and Accepted Passwords" width="500"/>
+<img src="Screenshots/fiillter3.png" alt="Filter Failed and Accepted Passwords" width="500"/>
 
 ---
 
