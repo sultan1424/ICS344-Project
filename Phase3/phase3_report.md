@@ -55,6 +55,12 @@ This dual approach ensured that even if a connection reached the server, it woul
 ### 3.2 Configure UFW Firewall
 
 - Installed UFW.
+
+  ```bash
+  sudo apt-get update
+  sudo apt-get install ufw
+  ```
+
 <img src="Screenshots/installUFW.png" width="500"/>
 - Allowed only the Kali attacker's IP to access SSH:
 
@@ -114,9 +120,9 @@ This dual approach ensured that even if a connection reached the server, it woul
 - Firewall Protection: No firewall rules applied
 - Attack Success: Successful brute-force attacks
 
-📸 **Insert here:**
-- Screenshot of successful Hydra brute-force attack
-- Screenshot of successful SSH login
+<img src="Screenshots/sshBefore.png" width="500"/>
+
+<img src="Screenshots/hydraBefore.png" width="500"/>
 
 ---
 
@@ -127,9 +133,11 @@ This dual approach ensured that even if a connection reached the server, it woul
 - Firewall Protection: UFW firewall enabled
 - Attack Success: All brute-force and login attempts fail
 
-📸 **Insert here:**
+
 - Screenshot of SSH "Permission denied (publickey)" error
+<img src="Screenshots/sshafter.png" width="500"/>
 - Screenshot of failed Hydra brute-force attack
+<img src="Screenshots/hydraAfter.png" width="500"/>
 - Screenshot of UFW firewall rules
 
 ---
@@ -140,39 +148,4 @@ Through the implementation of SSH configuration hardening and strict firewall ru
 
 ---
 
-## 7. Commands Used
 
-Below are all the commands executed during the defense setup:
-
-### SSH Configuration Hardening
-
-```bash
-sudo nano /etc/ssh/sshd_config
-# Edited:
-#   PermitRootLogin no
-#   PasswordAuthentication no
-
-sudo service ssh restart
-```
-
-### UFW Firewall Configuration
-
-```bash
-sudo apt-get update
-sudo apt-get install ufw
-sudo ufw allow from 192.168.8.166 to any port 22 proto tcp
-sudo ufw default deny incoming
-sudo ufw enable
-sudo ufw status
-```
-
-### Attack Validation (Testing)
-
-```bash
-ssh vagrant@192.168.8.165
-hydra -l vagrant -P smalllist.txt ssh://192.168.8.165
-```
-
----
-
-# ✅ End of Phase 3 Report
