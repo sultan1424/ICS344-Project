@@ -181,17 +181,18 @@ sshd "failed password"
 
 ---
 
-### 5. Attack Source Statistics (Optional Enhancement)
+### 5. Comparing Successful and Failed SSH Logins
 
-Extracted attacker IP addresses using regular expressions:
+Separates and counts the number of failed and successful SSH login attempts to analyze brute-force success rate.
+
 
 ```bash
-sshd "Failed password"
-| rex "rhost=(?<attacker_ip>\d+.\d+.\d+.\d+)"
-| stats count by attacker_ip
+sshd "Failed password" OR "Accepted password"
+| rex "(?<status>Failed password|Accepted password)"
+| stats count by status
 ```
 
-<img src="screenshots/attacker_ip_statistics.png" alt="Statistics by Attacker IP" width="500"/>
+<img src="Screenshots/fillter2.png" alt="Statistics by Attacker IP" width="500"/>
 
 ---
 
