@@ -5,44 +5,51 @@
 
 ## 1. Introduction
 
-In Phase 3 of the project, we implemented a defensive strategy to protect the SSH service on the Metasploitable3 victim machine. After successfully exploiting SSH vulnerabilities in Phase 1 and visualizing the attacks in Phase 2, the goal of this phase was to harden the system and prevent unauthorized access or successful brute-force attacks.
+In Phase 3 of the project, we implemented a defensive strategy to protect the SSH service on the Metasploitable3 victim machine. After successfully exploiting SSH vulnerabilities in Phase 1 and visualizing the attack patterns in Phase 2, the goal of this phase was to harden the system, restrict access, and prevent unauthorized or brute-force attempts.
 
 ---
 
 ## 2. Selected Defensive Mechanism
 
-To secure the SSH service, we applied two layers of defense:
+To secure the SSH service, we applied two critical layers of defense:
 
 - **SSH Configuration Hardening:**
-  - Disabled password-based authentication (`PasswordAuthentication no`)
-  - Disabled root login (`PermitRootLogin no`)
+  - Disabled password-based authentication (`PasswordAuthentication no`) to block brute-force password attacks.
+  - Disabled root login (`PermitRootLogin no`) to reduce the risk of privileged account compromise.
 
 - **Network Firewall (UFW) Restriction:**
-  - Allowed SSH access only from the Kali Linux attacker's IP (`192.168.8.166`)
-  - Blocked all other incoming connections by default (`ufw default deny incoming`)
+  - Allowed SSH access only from the Kali Linux attacker's IP address (`192.168.8.166`) for controlled testing.
+  - Blocked all other incoming network connections by default (`ufw default deny incoming`).
 
 - **Important Note:**
-  - SSH access was restricted to the Kali attacker's IP (192.168.8.166) temporarily to allow controlled testing and validation of the defense mechanisms.
-  - In a real-world scenario, after successful testing, SSH access would be further restricted to trusted administrative IPs or fully disabled if unnecessary.
+  - SSH access was temporarily limited to Kali's IP to allow controlled validation of defenses. In a real deployment, only trusted administrative IPs would be allowed.
 
-This dual approach ensured that even if a connection reached the server, it would still be blocked unless it used proper authentication mechanisms.
+This layered security ensured that even if someone reached the SSH port, they could not authenticate without proper credentials.
 
 ---
 
 ## 3. Implementation Steps
 
+This section describes the step-by-step application of SSH hardening and firewall restrictions.
+
 ### 3.1 Harden SSH Configuration
 
-- Edited the SSH server configuration file `/etc/ssh/sshd_config`.
+- Opened the SSH server configuration file to modify default behavior:
 
-- Applied the following settings:
+  ```bash
+  sudo nano /etc/ssh/sshd_config
+  ```
+
+- Applied critical security settings to minimize exposure:
 
   ```bash
   PermitRootLogin no
   PasswordAuthentication no
   ```
+
 <img src="Screenshots/harden.png" width="500"/>
-- Restarted the SSH service to apply changes:
+
+- Restarted the SSH service to apply and enforce the new secure configuration:
 
   ```bash
   sudo service ssh restart
@@ -54,7 +61,9 @@ This dual approach ensured that even if a connection reached the server, it woul
 
 ### 3.2 Configure UFW Firewall
 
-- Installed UFW.
+To restrict network-level access and limit SSH exposure:
+
+- Updated the package repositories and installed UFW firewall if it was not already installed:
 
   ```bash
   sudo apt-get update
@@ -62,13 +71,16 @@ This dual approach ensured that even if a connection reached the server, it woul
   ```
 
 <img src="Screenshots/installUFW.png" width="500"/>
-- Allowed only the Kali attacker's IP to access SSH:
+
+- Configured UFW to allow only SSH access from the trusted attacker's IP address:
 
   ```bash
   sudo ufw allow from 192.168.8.166 to any port 22 proto tcp
   ```
+
 <img src="Screenshots/UFWallow.png" width="500"/>
-- Denied all other incoming traffic:
+
+- Applied default security rules to deny all incoming connections by default, then enabled the firewall:
 
   ```bash
   sudo ufw default deny incoming
@@ -82,32 +94,35 @@ This dual approach ensured that even if a connection reached the server, it woul
 
 ## 4. Testing and Validation
 
-### 4.1 SSH Login Attempt
+This section verifies that the implemented defenses successfully blocked previously successful attack methods.
 
-- Attempted SSH login manually from Kali Linux:
-  
+### 4.1 SSH Login Attempt (Manual Test)
+
+- Attempted manual SSH connection using previously valid credentials:
+
   ```bash
   ssh vagrant@192.168.8.165
   ```
+
 <img src="Screenshots/sshafter.png" width="500"/>
-- Result: **Permission denied (publickey)** error, confirming password login is disabled.
 
-
+- **Result:**  
+  The connection failed with a **"Permission denied (publickey)"** error, confirming that password-based logins were disabled.
 
 ---
 
 ### 4.2 Brute-Force Attempt Using Hydra
 
-- Attempted a brute-force attack using Hydra tool:
+- Attempted to re-run brute-force password attack using Hydra:
 
   ```bash
   hydra -l vagrant -P smalllist.txt ssh://192.168.8.165
   ```
+
 <img src="Screenshots/hydraAfter.png" width="500"/>
-- Result: Attack failed because password authentication was not available.
 
-
-
+- **Result:**  
+  Hydra attack failed as the SSH service now requires public key authentication only, rejecting any password-based login attempts.
 
 ---
 
@@ -115,37 +130,40 @@ This dual approach ensured that even if a connection reached the server, it woul
 
 ### 5.1 Before Defense
 
-- SSH Access: Open to any IP
-- Authentication: Password login allowed
-- Firewall Protection: No firewall rules applied
-- Attack Success: Successful brute-force attacks
+Before applying security measures, the victim machine was fully vulnerable:
+
+- SSH Access: Open to any device on the network
+- Authentication: Password login permitted
+- Firewall Protection: No firewall rules
+- Attack Success: Successful brute-force and direct SSH login
 
 <img src="Screenshots/sshBefore.png" width="500"/>
-
 <img src="Screenshots/hydraBefore.png" width="500"/>
 
 ---
 
 ### 5.2 After Defense
 
-- SSH Access: Restricted to 192.168.8.166 (Kali only)
-- Authentication: Password login disabled
-- Firewall Protection: UFW firewall enabled
-- Attack Success: All brute-force and login attempts fail
+After hardening, the victim machine's exposure was drastically minimized:
 
+- SSH Access: Restricted to the Kali attacker's IP address only
+- Authentication: Password login disabled, key-based authentication required
+- Firewall Protection: UFW enabled and enforcing network filtering
+- Attack Success: All attack attempts failed
 
-- Screenshot of SSH "Permission denied (publickey)" error
+- SSH failure screenshot:
 <img src="Screenshots/sshafter.png" width="500"/>
-- Screenshot of failed Hydra brute-force attack
+
+- Hydra attack failure screenshot:
 <img src="Screenshots/hydraAfter.png" width="500"/>
-- Screenshot of UFW firewall rules
+
+- UFW firewall rules screenshot:
 <img src="Screenshots/status.png" width="500"/>
+
 ---
 
 ## 6. Conclusion
 
-Through the implementation of SSH configuration hardening and strict firewall rules, we successfully mitigated the previous vulnerabilities exploited in Phase 1. By disabling password authentication and limiting SSH access to a specific IP address, the system is now significantly more secure against unauthorized access and brute-force attacks.
+By applying SSH configuration hardening and implementing strict firewall rules, we significantly improved the security posture of the victim machine. Unauthorized access and brute-force attack attempts were successfully blocked. This demonstrates the effectiveness of defense-in-depth strategies, ensuring resilience against commonly exploited SSH vulnerabilities.
 
 ---
-
-
