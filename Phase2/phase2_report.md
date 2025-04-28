@@ -223,6 +223,3 @@ The setup achieved full **log monitoring**, **pattern analysis**, and **threat v
 
 ---
 
-# 📸 Notes:
-- **Replace each `<img src="...">` path** with your real uploaded screenshot paths (match the names you saved).
-- **Keep the order** to match your project flow for best grading.
