@@ -69,7 +69,7 @@ sudo chmod 644 /home/vagrant/auth.log
 scp vagrant@192.168.8.165:/home/vagrant/auth.log .
 ```
 
-<img src="screenshots/scp_copy_auth_log.png" alt="Copying auth.log to Attacker" width="500"/>
+<img src="Screenshots/copyFileinAuth.png" alt="Copying auth.log to Attacker" width="500"/>
 
 ---
 
