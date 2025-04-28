@@ -124,4 +124,39 @@ Through the implementation of SSH configuration hardening and strict firewall ru
 
 ---
 
+## 7. Commands Used
+
+Below are all the commands executed during the defense setup:
+
+### SSH Configuration Hardening
+
+```bash
+sudo nano /etc/ssh/sshd_config
+# Edited:
+#   PermitRootLogin no
+#   PasswordAuthentication no
+
+sudo service ssh restart
+```
+
+### UFW Firewall Configuration
+
+```bash
+sudo apt-get update
+sudo apt-get install ufw
+sudo ufw allow from 192.168.8.166 to any port 22 proto tcp
+sudo ufw default deny incoming
+sudo ufw enable
+sudo ufw status
+```
+
+### Attack Validation (Testing)
+
+```bash
+ssh vagrant@192.168.8.165
+hydra -l vagrant -P smalllist.txt ssh://192.168.8.165
+```
+
+---
+
 # ✅ End of Phase 3 Report
