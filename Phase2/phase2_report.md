@@ -1,15 +1,16 @@
-# Phase 2: SIEM-Based SSH Attack Monitoring and Visualization
+
+# Phase 2: SIEM Dashboard Analysis
 
 ---
 
-## 1. Introduction
+## Introduction
 
-In this phase, we deployed a Security Information and Event Management (SIEM) solution using Splunk Enterprise to collect, analyze, and visualize SSH login activity.  
-The primary objective was to monitor attacker behavior and recognize cyberattack patterns through log analysis.
+In this phase, we implemented a Security Information and Event Management (SIEM) system using Splunk Enterprise to collect, analyze, and visualize SSH attack logs.  
+The goal was to monitor and detect cyberattack patterns between an attacker (Kali Linux) and a victim (Metasploitable3) machine by analyzing authentication activities.
 
 ---
 
-## 2. Environment Overview
+## Step 1: Environment Setup
 
 | Machine | Role | Purpose | IP |
 |:--------|:-----|:--------|:--------|
@@ -17,134 +18,140 @@ The primary objective was to monitor attacker behavior and recognize cyberattack
 | Metasploitable3 (UTM) | Victim | Hosted vulnerable SSH service | 192.168.8.165 |
 | MacBook Pro (Host) | SIEM Server | Hosted Splunk Enterprise for log monitoring | 192.168.8.120 |
 
-- **Splunk Version:** 9.4.1
-- **Networking Mode:** Bridged Adapter (direct IP access between VMs)
 
+- **Splunk Version:** 9.4.1
+- **Network Mode:** Bridge Network (for direct IP connectivity)
 **📸 Screenshot:** Successful ping from Host (Mac) to Victim Machine (Metasploitable3) — proving direct network communication.
 
+---
 
+## Step 2: Splunk Installation
+
+- Downloaded and installed Splunk Enterprise on Mac via `.dmg` package.
+- Configured admin username and password.
+- Started Splunk server locally.
 
 ---
 
-## 3. Splunk Setup and Listener Configuration
+## Step 3: Attack Simulation (From Phase 1)
 
-- Installed Splunk Enterprise on macOS using `.dmg` installer.
-- Configured a **TCP 9997** data input to receive forwarded syslog messages.
-- Verified listener readiness inside Splunk.
-
-**📸 Screenshot:** Insert TCP 9997 input creation screenshot
+- SSH brute-force attacks were performed from Kali VM.
+- Exploited SSH service on Metasploitable3.
+- Validated successful and failed login attempts to generate logs.
 
 ---
 
-## 4. Attack Activity Preparation
+## Step 4: Log Extraction from Victim Machine
 
-SSH login attacks were simulated during Phase 1:
+**1. SSH login into Victim (Metasploitable3):**
 
-- **Manual and automated** SSH login attempts from Kali to Metasploitable3.
-- Credentials used: `vagrant`/`vagrant`.
-
----
-
-## 5. Extracting and Preparing Victim Logs
-
-1. Accessed victim via SSH:
-
-    ```bash
-    ssh vagrant@192.168.8.165
-    ```
-
-2. Copied SSH authentication logs:
-
-    ```bash
-    sudo cp /var/log/auth.log /home/vagrant/
-    sudo chmod 644 /home/vagrant/auth.log
-    ```
-
-3. Transferred logs to the attacker machine:
-
-    ```bash
-    scp vagrant@192.168.8.165:/home/vagrant/auth.log .
-    ```
-
-**📸 Screenshot:** Insert SCP file transfer evidence
-
----
-
-## 6. Uploading Victim Logs to Splunk
-
-- Uploaded `auth.log` via Splunk Web GUI under **"Add Data"** → **"Upload File"**.
-- Selected source type as `linux_secure`.
-- Confirmed file parsing was correct.
-
-**📸 Screenshot:** Insert successful file upload screen
-
----
-
-## 7. Data Search and Visualization
-
-### 7.1 General SSHD Activity
-
-```spl
-search sshd
+```bash
+ssh vagrant@192.168.8.165
 ```
 
-**📸 Screenshot:** Insert general sshd events search results
+<img src="screenshots/ssh_login.png" alt="SSH Login to Victim" width="500"/>
 
 ---
 
-### 7.2 Event Pattern Discovery
+**2. Copy auth.log to a readable directory:**
 
-- Viewed Splunk's automatic pattern grouping.
-
-**📸 Screenshot:** Insert Patterns tab screenshot
-
----
-
-### 7.3 Failed Login Attempts
-
-```spl
-search sshd "Failed password"
+```bash
+sudo cp /var/log/auth.log /home/vagrant/
+sudo chmod 644 /home/vagrant/auth.log
 ```
 
-**📸 Screenshot:** Insert failed password events screenshot
-
 ---
 
-### 7.4 Successful Login Attempts
+**3. Copy log file to Attacker (Kali) using SCP:**
 
-```spl
-search sshd "Accepted password"
+```bash
+scp vagrant@192.168.8.165:/home/vagrant/auth.log .
 ```
 
-**📸 Screenshot:** Insert accepted password events screenshot
+<img src="screenshots/scp_copy_auth_log.png" alt="Copying auth.log to Attacker" width="500"/>
 
 ---
 
-### 7.5 Attackers by IP Address
+## Step 5: Uploading Logs to Splunk
 
-```spl
-search sshd "Failed password"
-| rex "rhost=(?<attacker_ip>\d+\.\d+\.\d+\.\d+)"
+- Uploaded the `auth.log` file manually to Splunk through the Web GUI:
+  - Settings → Add Data → Files & Directories → Upload.
+
+<img src="screenshots/upload_auth_log.png" alt="Upload Log File to Splunk" width="500"/>
+
+---
+
+## Step 6: Data Analysis in Splunk
+
+### 1. Search for SSH authentication events
+
+```bash
+search: sshd
+```
+
+<img src="screenshots/sshd_basic_search.png" alt="SSHD Event Search" width="500"/>
+
+---
+
+### 2. Identify Brute-Force Success Moments
+
+<img src="screenshots/accepted_password_search.png" alt="Successful SSH login visualized" width="500"/>
+
+---
+
+### 3. Pattern Analysis
+
+Used the **Patterns** tab to identify repetitive authentication patterns.
+
+<img src="screenshots/patterns_analysis.png" alt="Authentication Patterns" width="500"/>
+
+---
+
+### 4. Filter by Failed and Accepted Password Attempts
+
+```bash
+index=* sshd "Failed password" OR "Accepted password"
+```
+
+<img src="screenshots/failed_and_accepted_password.png" alt="Filter Failed and Accepted Passwords" width="500"/>
+
+---
+
+### 5. Attack Source Statistics (Optional Enhancement)
+
+Extracted attacker IP addresses using regular expressions:
+
+```bash
+sshd "Failed password"
+| rex "rhost=(?<attacker_ip>\d+.\d+.\d+.\d+)"
 | stats count by attacker_ip
 ```
 
-**📸 Screenshot:** Insert attacker IP statistics
+<img src="screenshots/attacker_ip_statistics.png" alt="Statistics by Attacker IP" width="500"/>
 
 ---
 
-## 8. Analysis Highlights
+## Step 7: Comparison between Victim and Attacker Logs
 
-- Observed both successful and failed SSH login attempts.
-- Identified single and repeated attacker IPs.
-- Confirmed brute-force characteristics via authentication failures clustering.
-
----
-
-## 9. Conclusion
-
-This phase demonstrated effective use of Splunk SIEM to collect, ingest, and analyze SSH logs during attack scenarios.  
-By correlating patterns, extracting attacker information, and visualizing events, we highlighted Splunk’s value in real-world intrusion detection and response.
+- Victim machine provided rich authentication logs including successful and failed SSH login attempts.
+- The analysis identified brute-force behavior clearly through SSH log patterns.
+- Only one attacking IP was detected — confirming single-source brute-force attempt from the attacker's Kali machine.
 
 ---
 
-# ✅ End of Phase 2
+## Conclusion
+
+Through this phase, we successfully:
+
+- Integrated victim-side SSH logs into Splunk.
+- Visualized and analyzed brute-force attack patterns.
+- Extracted login attempts, success/failure rates, and attacker IP statistics.
+- Highlighted the power of SIEM platforms like Splunk in real-world cybersecurity incident detection.
+
+The setup achieved full **log monitoring**, **pattern analysis**, and **threat visualization** as required.
+
+---
+
+# 📸 Notes:
+- **Replace each `<img src="...">` path** with your real uploaded screenshot paths (match the names you saved).
+- **Keep the order** to match your project flow for best grading.
