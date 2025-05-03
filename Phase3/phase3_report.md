@@ -167,3 +167,4 @@ After hardening, the victim machine's exposure was drastically minimized:
 By applying SSH configuration hardening and implementing strict firewall rules, we significantly improved the security posture of the victim machine. Unauthorized access and brute-force attack attempts were successfully blocked. This demonstrates the effectiveness of defense-in-depth strategies, ensuring resilience against commonly exploited SSH vulnerabilities.
 
 ---
+### **End of Phase 3**
